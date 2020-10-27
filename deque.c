@@ -1,4 +1,4 @@
-/*Baralho de Cartas
+Baralho de Cartas
 Daniel Hashimoto Andrade
 •
 9 de out.Editado às 22 de out.
@@ -13,7 +13,7 @@ Comentários da turma
 
 Seus trabalhos
 Atribuído
-Comentários particulares*/
+Comentários particulares
 
 
 #include <stdio.h>
@@ -33,8 +33,6 @@ Comentários particulares*/
 #define TIPO int
 /* O tamanho máximo+1 que Deck pode guardar. Pode mudar, mantenha > 1 */
 #define TAM_DEQUE 65
-
-#define RAND_MAX 65 /* Deixando o número de cartas no rand max, e fazendo o valor de 1 - as 2- etc*/
 
 /* Isso é uma struct: uma junção de vários dados
  * gerando um dado personalizado
@@ -183,28 +181,11 @@ typedef struct {
 	// insira dados se necessários
 } deck;
 
-void organizar(deck* d) {
-	int i = 0;
-	for (i = 0;i < TAM_DEQUE;i++) {
-		d->d->d[i] = i+1;
-	}
-}
-
 /* Inicializa o baralho com a seed.
  * returna 0 em sucesso, -1 em erro.
  * Erros acontecem quando a função não foi implementada
  */
 int reset(deck* d, unsigned int seed) {
-	int i = 0;
-
-	organizar(d);
-
-	srand(seed);
-	for (i = 0; i < TAM_DEQUE; i++) {
-		d->d->d[i] = rand() % RAND_MAX;
-	}
-
-
 	return -1;
 }
 
@@ -213,18 +194,6 @@ int reset(deck* d, unsigned int seed) {
  * Erros acontecem quando a função não foi implementada
  */
 int shuffle(deck* d) {
-	int i = 0, c, comp;
-
-	for (c = TAM_DEQUE; c > 1;c--) {
-		for (i = 1;i <= c - 1;i++) {
-			if (rand()%2 == 0) {
-				comp = d->d->d[i - 1];
-				d->d->d[i - 1] = d->d->d[i];
-				d->d->d[i] = comp;
-			}
-		}
-	}
-
 	return -1;
 }
 
@@ -234,16 +203,6 @@ int shuffle(deck* d) {
  * ou o deck está vazio.
  */
 int draw(deck* d, TIPO* card) {
-	int i = 0;
-	
-	for (i = 0; i < TAM_DEQUE;i++) {
-		if (d->d->d[TAM_DEQUE - 1 - i] != 0) {
-			card = d->d->d[TAM_DEQUE - 1 - i];
-			d->d->d[TAM_DEQUE - 1 - i] = 0;
-			break;
-		}
-	}
-
 	return -1;
 }
 
@@ -253,16 +212,6 @@ int draw(deck* d, TIPO* card) {
  * ou deck está cheio.
  */
 int PutTop(deck* d, TIPO card) {
-	int i = 0;
-
-	for (i = 0; i < TAM_DEQUE;i++) {
-		if (d->d->d[TAM_DEQUE - 1 - i] == 0) {
-			d->d->d[TAM_DEQUE - i] = card;
-			break;
-		}
-	}
-
-
 	return -1;
 }
 
@@ -272,17 +221,6 @@ int PutTop(deck* d, TIPO card) {
  * ou deck está cheio.
  */
 int PutBot(deck* d, TIPO card) {
-	int i = 0;
-	TIPO comp = d->d->d[0], hold;
-
-	d->d->d[0] = card;
-
-	for (i = 1; i < TAM_DEQUE;i++) {
-		hold = d->d->d[i];
-		d->d->d[i] = comp;
-		comp = hold;
-	}
-
 	return -1;
 }
 
