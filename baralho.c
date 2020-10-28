@@ -6,7 +6,7 @@
 
 typedef struct _CARTAS{
 	char naipe[10];
-	int valor;
+	int valor, pega;
 	char info;
 } CARTA;
 
@@ -31,21 +31,25 @@ int main(void)
     {
         baralho[i].valor = i + 1;
         strcpy(baralho[i].naipe, naipe1);
+        baralho[i].pega = 0;
     }
     for (i = 13; i <= 25; i++)
     {
         baralho[i].valor = i - 12;
         strcpy(baralho[i].naipe, naipe2);
+        baralho[i].pega = 0;
     }
     for (i = 26; i <= 38; i++)
     {
         baralho[i].valor = i - 25;
         strcpy(baralho[i].naipe, naipe3);
+        baralho[i].pega = 0;
     }
     for (i = 39; i <= 52; i++)
     {
         baralho[i].valor = i - 38;
         strcpy(baralho[i].naipe, naipe4);
+        baralho[i].pega = 0;
     }
     /*==============================================================================*/
     /*printf("Joao recebera:\n");
@@ -85,6 +89,10 @@ int main(void)
     for (i = 0; i < 52; i++)
     {
         n = rand() % 52;
+        while (baralho[n].pega == 1) {
+            n = rand() % 52;
+        }
+        baralho[n].pega = 1;
         if (baralho[n].valor == 1) {
             printf("%d: As de %s.\n", n, baralho[n].naipe);
         }
