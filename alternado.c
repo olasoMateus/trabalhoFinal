@@ -13,11 +13,14 @@ typedef struct _CARTAS{
 
 typedef struct _MAO{
 	CARTA cartas[7];
-	int pontos, dinheiro;
+	int pontos, dinheiro, qtdCartas;
 } MAO;
 
 void embaralhar(int* ordem);
 void darCartas(MAO* dealer, MAO* jogador1, CARTA baralho[], int* ordem);
+void pontos(MAO* mao);
+void hit(MAO* mao, CARTA baralho[], int* ordem);
+void mostrarCartas(MAO* mao, int u);
 
 
 int gNumCArta = 0;
@@ -84,69 +87,58 @@ int main(void)
     }
 
 
-    /*for (i = 0;i < 52;i++) {
-        if (baralho[i].valor == 1) {
-            printf("As de %s. Valor: %d\n", baralho[i].naipe, baralho[i].pontos);
-        }
-        else if (baralho[i].valor == 11) {
-            printf("Valete (J) de %s. Valor: %d\n", baralho[i].naipe, baralho[i].pontos);
-        }
-        else if (baralho[i].valor == 12) {
-            printf("Dama (Q) de %s. Valor: %d\n", baralho[i].naipe, baralho[i].pontos);
-        }
-        else if (baralho[i].valor == 13) {
-            printf("Rei (K) de %s. Valor: %d\n", baralho[i].naipe, baralho[i].pontos);
-        }
-        else{
-            printf("%d de %s. Valor: %d\n", baralho[i].valor,baralho[i].naipe, baralho[i].pontos);
-        }
-    }*/
-
     embaralhar(ordem);
     printf("Cartas do dealer: \n");
 
     darCartas(dealer, jogador1, baralho, ordem);
 
-    for (j = 0;j < 2; j++) {
-        if (dealer->cartas[j].valor == 1) {
-            printf("As de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
+    mostrarCartas(dealer, 1);
+
+
+    pontos(dealer);
+    if (dealer->pontos == 21) {
+        printf("21!! Jogador perde automaticamente.\n");
+    }
+
+    printf("Cartas do jogador: \n");
+
+    mostrarCartas(jogador1, 0);
+    pontos(jogador1);
+    printf("Pontos do jogador: %d\n", jogador1->pontos);
+
+    
+
+
+    while (jogador1->pontos < 21) {
+        printf("Deseja dar hit? 1 -s 2 -n\n");
+        scanf("%d", &j);
+        if (j == 1) {
+            hit(jogador1, baralho, ordem);
+            printf("Cartas do jogador: \n");
+            mostrarCartas(jogador1, 0);
+            pontos(jogador1);
+            printf("Pontos do jogador: %d\n", jogador1->pontos);
         }
-        else if (dealer->cartas[j].valor == 11) {
-            printf("Valete (J) de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
-        }
-        else if (dealer->cartas[j].valor == 12) {
-            printf("Dama (Q) de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
-        }
-        else if (dealer->cartas[j].valor == 13) {
-            printf("Rei (K) de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
-        }
-        else {
-            printf("%d de %s. Valor: %d\n", dealer->cartas[j].valor, dealer->cartas[j].naipe, dealer->cartas[j].pontos);
+        else if (j == 2) {
+            break;
         }
     }
 
+    mostrarCartas(dealer, 0);
 
-    /*printf("\n\nAgora, sorteado:\n\n");
+    printf("Pontos do dealer: %d\n", dealer->pontos);
+    while (dealer->pontos < 17 && dealer->qtdCartas < 5) {
+        hit(dealer, baralho, ordem);
+        printf("Cartas do dealer: \n");
+        mostrarCartas(dealer, 0);
+        pontos(dealer);
+        printf("Pontos do dealer: %d\n", dealer->pontos);
+    }
 
+    if (jogador1->pontos > dealer->pontos) printf("Jogador venceu!!!\n");
+    else if (dealer->pontos > jogador1->pontos) printf("Dealer venceu!!!!\n");
+    else printf("Push!!!(empate)\n");
 
-    for (j = 0; j < 52; j++)
-    {
-        if (baralho[*(ordem + j)].valor == 1) {
-            printf("%d: As de %s.\n", *(ordem + j), baralho[*(ordem + j)].naipe);
-        }
-        else if (baralho[*(ordem + j)].valor == 11) {
-            printf("%d: Valete (J) de %s.\n", *(ordem + j), baralho[*(ordem + j)].naipe);
-        }
-        else if (baralho[*(ordem + j)].valor == 12) {
-            printf("%d: Dama (Q) de %s.\n", *(ordem + j), baralho[*(ordem + j)].naipe);
-        }
-        else if (baralho[*(ordem + j)].valor == 13) {
-            printf("%d: Rei (K) de %s.\n", *(ordem + j), baralho[*(ordem + j)].naipe);
-        }
-        else {
-            printf("%d: %d de %s.\n", *(ordem + j), baralho[*(ordem + j)].valor, baralho[*(ordem + j)].naipe);
-        }
-    }*/
 
     puts("\n");
     system("PAUSE");
@@ -182,12 +174,16 @@ void embaralhar(int * ordem) {
 void darCartas(MAO *dealer, MAO *jogador1, CARTA baralho[], int* ordem) {
     int i = 0, j = 1;
 
+    dealer->qtdCartas = 0;
+    jogador1->qtdCartas = 0;
+
     for (i = 0; i < 4; i++) {
         if (i % 2 == 0) {
             dealer->cartas[j - 1].pontos = baralho[*(ordem + gNumCArta)].pontos;
             strcpy(dealer->cartas[j - 1].naipe, baralho[*(ordem + gNumCArta)].naipe);
             dealer->cartas[j - 1].valor = baralho[*(ordem + gNumCArta)].valor;
             gNumCArta++;
+            dealer->qtdCartas++;
         }
         if (i % 2 == 1) {
             jogador1->cartas[j - 1].pontos = baralho[*(ordem + gNumCArta)].pontos;
@@ -195,8 +191,87 @@ void darCartas(MAO *dealer, MAO *jogador1, CARTA baralho[], int* ordem) {
             jogador1->cartas[j - 1].valor = baralho[*(ordem + gNumCArta)].valor;
             gNumCArta++;
             j++;
+            jogador1->qtdCartas++;
         }
     }
 
     return;
 }
+
+void pontos(MAO* mao) {
+    int i = 0, j = 0, h = 0, total = 0;
+    for (i = 0;i < mao->qtdCartas; i++) {
+        if (mao->cartas[i].pontos == 1) {
+            j = 1;
+            continue;
+        }
+        if (mao->cartas[i].pontos == 10) {
+            h = 1;
+        }
+        total = total + mao->cartas[i].pontos;
+    }
+
+    if (total > 21) {
+        printf("Estouro!\n");
+        mao->pontos = total;
+        return;
+    }
+
+    if (j == 1 && h == 1) {
+        printf("21!!\n");
+        mao->pontos = 21;
+        return;
+    }
+    else if(j == 1)
+    {
+        if (total > 10) {
+            mao->pontos = total + 1;
+            return;
+        }
+        else {
+            mao->pontos = total + 11;
+            return;
+        }
+    }
+    else {
+        mao->pontos = total;
+        return;
+    }
+}
+
+void hit(MAO* mao, CARTA baralho[], int* ordem) {
+    int  i = 0;
+
+    mao->cartas[mao->qtdCartas].pontos = baralho[*(ordem + gNumCArta)].pontos;
+    strcpy(mao->cartas[mao->qtdCartas].naipe, baralho[*(ordem + gNumCArta)].naipe);
+    mao->cartas[mao->qtdCartas].valor = baralho[*(ordem + gNumCArta)].valor;
+    gNumCArta++;
+    mao->qtdCartas++;
+
+    pontos(mao);
+
+    return;
+}
+
+void mostrarCartas(MAO* mao, int u) {
+    int  j = 0;
+
+    for (j = 0;j < mao->qtdCartas - u; j++) {
+        if (mao->cartas[j].valor == 1) {
+            printf("As de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+        }
+        else if (mao->cartas[j].valor == 11) {
+            printf("Valete (J) de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+        }
+        else if (mao->cartas[j].valor == 12) {
+            printf("Dama (Q) de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+        }
+        else if (mao->cartas[j].valor == 13) {
+            printf("Rei (K) de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+        }
+        else {
+            printf("%d de %s. Valor: %d\n", mao->cartas[j].valor, mao->cartas[j].naipe, mao->cartas[j].pontos);
+        }
+    }
+}
+
