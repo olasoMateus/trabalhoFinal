@@ -12,7 +12,7 @@ typedef struct _CARTAS{
 } CARTA;
 
 typedef struct _MAO{
-	CARTA * cartas;
+	CARTA cartas[7];
 	int pontos, dinheiro;
 } MAO;
 
@@ -36,6 +36,8 @@ int main(void)
     MAO* jogador1, split;
 
     ordem = (int*)malloc(52 * sizeof(int));
+    dealer = (MAO*)malloc(1 * sizeof(MAO));
+    jogador1 = (MAO*)malloc(1 * sizeof(MAO));
 
     srand(time(NULL));
     /*==============================================================================*/
@@ -105,20 +107,22 @@ int main(void)
 
     darCartas(dealer, jogador1, baralho, ordem);
 
-    if (dealer->cartas->valor == 1) {
-        printf("As de %s. Valor: %d\n", dealer->cartas->naipe, dealer->cartas->pontos);
-    }
-    else if (dealer->cartas->valor == 11) {
-        printf("Valete (J) de %s. Valor: %d\n", dealer->cartas->naipe, dealer->cartas->pontos);
-    }
-    else if (dealer->cartas->valor == 12) {
-        printf("Dama (Q) de %s. Valor: %d\n", dealer->cartas->naipe, dealer->cartas->pontos);
-    }
-    else if (dealer->cartas->valor == 13) {
-        printf("Rei (K) de %s. Valor: %d\n", dealer->cartas->naipe, dealer->cartas->pontos);
-    }
-    else {
-        printf("%d de %s. Valor: %d\n", dealer->cartas->valor, dealer->cartas->naipe, dealer->cartas->pontos);
+    for (j = 0;j < 2; j++) {
+        if (dealer->cartas[j].valor == 1) {
+            printf("As de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
+        }
+        else if (dealer->cartas[j].valor == 11) {
+            printf("Valete (J) de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
+        }
+        else if (dealer->cartas[j].valor == 12) {
+            printf("Dama (Q) de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
+        }
+        else if (dealer->cartas[j].valor == 13) {
+            printf("Rei (K) de %s. Valor: %d\n", dealer->cartas[j].naipe, dealer->cartas[j].pontos);
+        }
+        else {
+            printf("%d de %s. Valor: %d\n", dealer->cartas[j].valor, dealer->cartas[j].naipe, dealer->cartas[j].pontos);
+        }
     }
 
 
@@ -178,21 +182,17 @@ void embaralhar(int * ordem) {
 void darCartas(MAO *dealer, MAO *jogador1, CARTA baralho[], int* ordem) {
     int i = 0, j = 1;
 
-    dealer->cartas = (CARTA*)malloc(2 * sizeof(CARTA));
-
-    jogador1->cartas = (CARTA*)malloc(2 * sizeof(CARTA));
-    
     for (i = 0; i < 4; i++) {
         if (i % 2 == 0) {
-            dealer->cartas->pontos = baralho[*(ordem + gNumCArta)].pontos;
-            strcpy(dealer->cartas->naipe, baralho[*(ordem + gNumCArta)].naipe);
-            dealer->cartas->valor = baralho[*(ordem + gNumCArta)].valor;
+            dealer->cartas[j - 1].pontos = baralho[*(ordem + gNumCArta)].pontos;
+            strcpy(dealer->cartas[j - 1].naipe, baralho[*(ordem + gNumCArta)].naipe);
+            dealer->cartas[j - 1].valor = baralho[*(ordem + gNumCArta)].valor;
             gNumCArta++;
         }
         if (i % 2 == 1) {
-            jogador1->cartas->pontos = baralho[*(ordem + gNumCArta)].pontos;
-            strcpy(jogador1->cartas->naipe, baralho[*(ordem + gNumCArta)].naipe);
-            jogador1->cartas->valor = baralho[*(ordem + gNumCArta)].valor;
+            jogador1->cartas[j - 1].pontos = baralho[*(ordem + gNumCArta)].pontos;
+            strcpy(jogador1->cartas[j - 1].naipe, baralho[*(ordem + gNumCArta)].naipe);
+            jogador1->cartas[j - 1].valor = baralho[*(ordem + gNumCArta)].valor;
             gNumCArta++;
             j++;
         }
