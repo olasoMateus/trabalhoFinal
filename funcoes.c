@@ -148,6 +148,7 @@ int pontos(MAO *mao, MAO *jogador1, MAO *dealer)
     {
         printf("21!!\n");
         mao->pontos = 21;
+        mostrarCartas(mao, 0);
         vencedor(jogador1, dealer);
         return 1;
     }
@@ -193,6 +194,23 @@ int hit(MAO *mao, CARTA baralho[], int *ordem, MAO *jogador1, MAO *dealer)
     mao->cartas[mao->qtdCartas].valor = baralho[*(ordem + gNumCArta)].valor;
     gNumCArta++;
     mao->qtdCartas++;
+
+    if (pontos(mao, jogador1, dealer) == 1)
+        return 1;
+
+    return 0;
+}
+
+int doubleAposta(MAO* mao, CARTA baralho[], int* ordem, int* aposta, MAO* jogador1, MAO* dealer)
+{
+
+    mao->cartas[mao->qtdCartas].pontos = baralho[*(ordem + gNumCArta)].pontos;
+    strcpy(mao->cartas[mao->qtdCartas].naipe, baralho[*(ordem + gNumCArta)].naipe);
+    mao->cartas[mao->qtdCartas].valor = baralho[*(ordem + gNumCArta)].valor;
+    gNumCArta++;
+    mao->qtdCartas++;
+
+    *aposta += *aposta;
 
     if (pontos(mao, jogador1, dealer) == 1)
         return 1;
@@ -289,7 +307,7 @@ void criarBaralho(CARTA baralho[])
     return;
 }
 
-void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem)
+void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem, int* aposta)
 {
     int j = 0;
     rodada_vencida = 0;
@@ -314,7 +332,7 @@ void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem)
 
     while (jogador1->pontos < 21 && rodada_vencida == 0)
     {
-        printf("Deseja dar hit? 1 -s 2 -n\n");
+        printf("Hit - 1/Double - 2/Passar - 3\n");
         scanf("%d", &j);
         if (j == 1)
         {
@@ -330,10 +348,25 @@ void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem)
         }
         else if (j == 2)
         {
+            if (doubleAposta(jogador1, baralho, ordem, aposta, jogador1, dealer) == 1) {
+                rodada_vencida = 1;
+                return;
+            }
+            if (pontos(jogador1, jogador1, dealer) == 1) {
+                rodada_vencida = 1;
+                return;
+            }
+            mostrarCartas(jogador1, 0);
+            printf("Pontos do jogador: %d\n", jogador1->pontos);
+            printf("\n");
+            break;
+        }
+        else {
             break;
         }
     }
 
+    printf("Cartas do dealer: \n");
     mostrarCartas(dealer, 0);
 
     printf("Pontos do dealer: %d\n", dealer->pontos);

@@ -46,7 +46,8 @@ int main(void)
             if (aposta % 50 != 0)
                 printf("Cada ficha vale 50. Nao eh possivel apostar uma fracao de ficha!!!\n");
         }
-        rodada(dealer, jogador1, baralho, ordem);
+        printf("RODADA %d\n\n\n", gNumRodadas);
+        rodada(dealer, jogador1, baralho, ordem, &aposta);
         if (gNumRodadas % 5 == 0)
         {
             printf("Embaralhando...\nPronto!!!\n");
