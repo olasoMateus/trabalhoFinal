@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <conio.h>
 #include "funcoes.h"
 #include "Defs.h"
 #include "Globais.h"
