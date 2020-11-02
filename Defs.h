@@ -10,7 +10,7 @@ typedef struct _CARTAS
 
 typedef struct _MAO
 {
-    CARTA cartas[7];
+    CARTA cartas[14];
     int pontos, qtdCartas;
 } MAO;
 
