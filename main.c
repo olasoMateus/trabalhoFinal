@@ -23,6 +23,8 @@ int main(void)
     
     setlocale(LC_ALL, "Portuguese");
 
+    system("CLS");
+
     printf("Ola, bem - vindo ao nosso jogo de 21!!! Voce deseja ver as regras ou quer jogar imediatamente?(1 - Sim/ Qualquer outro numero - nao)\n");
     scanf("%d", &j);
     if (j == 1) {
