@@ -23,7 +23,7 @@ int main(void)
     
     setlocale(LC_ALL, "Portuguese");
 
-    printf("Ola, bem - vindo ao nosso jogo de 21!!! Você deseja ver as regras ou quer jogar imediatamente?(1 - Sim/ Qualquer outro numero - nao)\n");
+    printf("Ola, bem - vindo ao nosso jogo de 21!!! Voce deseja ver as regras ou quer jogar imediatamente?(1 - Sim/ Qualquer outro numero - nao)\n");
     scanf("%d", &j);
     if (j == 1) {
         pFile = fopen("Regras.txt", "r");
