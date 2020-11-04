@@ -63,7 +63,7 @@ void mostrarCartas(MAO *mao, int u)
 
 void vencedor(MAO* jogador1, MAO* dealer)
 {
-
+    printf("Resultados: \n\n");
     printf("\n");
 
     printf("Cartas do jogador: \n\n");
