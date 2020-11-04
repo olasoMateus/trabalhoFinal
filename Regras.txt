@@ -1,15 +1,29 @@
-O jogo 21 ou Blackjack, como √© conhecido mundialmente, √© um jogo de cartas cujo objetivo √© conquistar a maior pontua√ß√£o sem passar do limite, que √© 21 pontos. Nele, 1 ou mais jogadores enfrentam o dealer, que distribu√≠ as cartas e controla as apostas. O jogo pode ser jogado com 1 a 8 baralhos, sendo um dos jogos mais lucrativos do mundo, tanto para a mesa quanto para os jogadores.
-Na nossa vers√£o do jogo, utilizamos dois baralhos. O jogo come√ßa com o jogador decidindo o quanto quer apostar, sendo a aposta m√≠nima 50 e a aposta m√°xima 500. Ap√≥s receber suas duas primeiras cartas e visualizar uma das cartas do dealer, o jogador tem tr√™s op√ß√µes:
-1 ‚Äì Hit: Pedir uma carta a mais para o dealer, sem alterar o valor da aposta;
-2 ‚Äì Double: Dobrar o valor de sua aposta e pedir apenas uma carta a mais. N√£o √© poss√≠vel pedir mais cartas ap√≥s essa a√ß√£o;
-3 ‚Äì Passar: Ficar com suas cartas de momento;
-Caso o jogador ultrapasse 21 pontos com suas a√ß√µes, ele perde automaticamente.
-Caso o dealer ou o jogador fa√ßa um Blackjack, o advers√°rio perde automaticamente.
-Em um jogo com mais baralhos, tamb√©m √© poss√≠vel utilizar o Split, na ocasi√£o de ter duas cartas de pontua√ß√£o igual. Com o Split, o jogador divide as cartas em duas m√£os, e cada m√£o recebe mais uma carta, totalizando duas em ambas. A nova m√£o tamb√©m deve receber a mesma aposta que a primeira. Por√©m, como no Brasil √© mais comum jogar com dois baralhos, normalmente essa a√ß√£o √© abandonada.
-Ap√≥s o jogador escolher suas a√ß√µes, a outra carta do dealer √© revelada. Ent√£o, ele procede puxando cartas do baralho at√© ter 17 pontos ou mais, ou at√© ter 5 cartas. Ap√≥s isso, caso o dealer tenha mais pontos que o jogador, a mesa vence e recolhe a aposta. Caso o jogador tenha mais pontos, ele vence e deve ser pago em 1:1, com exce√ß√£o de um Blackjack, que paga 2:1. Caso ocorra um empate, a aposta volta para o jogador e 
-==============================Pontua√ß√£o das cartas=============================
-O naipe das cartas n√£o afeta na pontua√ß√£o delas.
-√Ås: O √°s pode valer 1 ou 11, tudo depende da pontua√ß√£o das outras cartas. Caso as outras cartas somadas tenham pontua√ß√£o maior que 10, o √°s vale 1. Caso tenham pontua√ß√£o menor ou igual a 10, a pontua√ß√£o do √°s √© 11;
-2 a 10: As pontua√ß√µes dessas cartas valem seu pr√≥prio n√∫mero;
-J, Q e K: Essas cartas tem pontua√ß√£o 10;
-Blackjack: Obtido quando, nas primeiras duas cartas, h√° um √°s e uma carta de pontua√ß√£o 10, atingindo 21 pontos. Nesse caso, a vit√≥ria √© autom√°tica, e para o jogador, os ganhos da aposta s√£o dobrados. Valido citar que √© poss√≠vel atingir 21 pontos com tr√™s ou mais cartas, mas isso n√£o √© considerado um blackjack.
+O jogo 21 ou Blackjack, como È conhecido mundialmente, È um jogo de cartas cujo objetivo È conquistar a maior pontuaÁ„o sem passar do limite, que È 21 pontos. Nele, 1 ou mais jogadores enfrentam o dealer, que distribuÌ as cartas e controla as apostas. O jogo pode ser jogado com 1 a 8 baralhos, sendo um dos jogos mais lucrativos do mundo, tanto para a mesa quanto para os jogadores.
+
+	Na nossa vers„o do jogo, utilizamos dois baralhos. O jogo comeÁa com o jogador decidindo o quanto quer apostar, sendo a aposta mÌnima 50 e a aposta m·xima 500. ApÛs receber suas duas primeiras cartas e visualizar uma das cartas do dealer, o jogador tem trÍs opÁıes:
+
+	1 ñ Hit: Pedir uma carta a mais para o dealer, sem alterar o valor da aposta;
+
+	2 ñ Double: Dobrar o valor de sua aposta e pedir apenas uma carta a mais. N„o È possÌvel pedir mais cartas apÛs essa aÁ„o;
+
+	3 ñ Passar: Ficar com suas cartas de momento;
+
+	Caso o jogador ultrapasse 21 pontos com suas aÁıes, ele perde automaticamente.
+
+	Caso o dealer ou o jogador faÁa um Blackjack, o advers·rio perde automaticamente.
+
+	Em um jogo com mais baralhos, tambÈm È possÌvel utilizar o Split, na ocasi„o de ter duas cartas de pontuaÁ„o igual. Com o Split, o jogador divide as cartas em duas m„os, e cada m„o recebe mais uma carta, totalizando duas em ambas. A nova m„o tambÈm deve receber a mesma aposta que a primeira. PorÈm, como no Brasil È mais comum jogar com dois baralhos, normalmente essa aÁ„o È abandonada.
+
+	ApÛs o jogador escolher suas aÁıes, a outra carta do dealer È revelada. Ent„o, ele procede puxando cartas do baralho atÈ ter 17 pontos ou mais, ou atÈ ter 5 cartas. ApÛs isso, caso o dealer tenha mais pontos que o jogador, a mesa vence e recolhe a aposta. Caso o jogador tenha mais pontos, ele vence e deve ser pago em 1:1, com exceÁ„o de um Blackjack, que paga 2:1. Caso ocorra um empate, a aposta volta para o jogador e 
+	
+==PontuaÁ„o das cartas==
+	
+	O naipe das cartas n„o afeta na pontuaÁ„o delas.
+
+	¡s: O ·s pode valer 1 ou 11, tudo depende da pontuaÁ„o das outras cartas. Caso as outras cartas somadas tenham pontuaÁ„o maior que 10, o ·s vale 1. Caso tenham pontuaÁ„o menor ou igual a 10, a pontuaÁ„o do ·s È 11;
+
+	2 a 10: As pontuaÁıes dessas cartas valem seu prÛprio n˙mero;
+
+	J, Q e K: Essas cartas tem pontuaÁ„o 10;
+
+	Blackjack: Obtido quando, nas primeiras duas cartas, h· um ·s e uma carta de pontuaÁ„o 10, atingindo 21 pontos. Nesse caso, a vitÛria È autom·tica, e para o jogador, os ganhos da aposta s„o dobrados. Valido citar que È possÌvel atingir 21 pontos com trÍs ou mais cartas, mas isso n„o È considerado um blackjack.
