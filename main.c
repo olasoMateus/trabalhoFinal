@@ -46,8 +46,8 @@ int main(void)
         }
         
         system("PAUSE");
+        fclose(pFile);
     }
-    fclose(pFile);
 
     ordem = (int *)malloc(52 * sizeof(int));
     dealer = (MAO *)malloc(1 * sizeof(MAO));
