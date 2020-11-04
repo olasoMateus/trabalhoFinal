@@ -27,3 +27,5 @@ O jogo 21 ou Blackjack, como é conhecido mundialmente, é um jogo de cartas cujo 
 	J, Q e K: Essas cartas tem pontuação 10;
 
 	Blackjack: Obtido quando, nas primeiras duas cartas, há um ás e uma carta de pontuação 10, atingindo 21 pontos. Nesse caso, a vitória é automática, e para o jogador, os ganhos da aposta são dobrados. Valido citar que é possível atingir 21 pontos com três ou mais cartas, mas isso não é considerado um blackjack.
+
+Apostas: Só é possível apostar valores multiplos de 50, com a aposta mínima sendo 50 e a aposta máxima sendo 500.

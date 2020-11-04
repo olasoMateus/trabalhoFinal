@@ -23,21 +23,31 @@ int main(void)
     
     setlocale(LC_ALL, "Portuguese");
 
-    pFile = fopen("Regras.txt", "r");
-    if (!pFile) exit(1);
-    p = fgetc(pFile);
-    while (p != EOF) {
-        if (h >= 80) {
-            if (p == ' ') {
-                printf("\n");
+    printf("Ola, bem - vindo ao nosso jogo de 21!!! Você deseja ver as regras ou quer jogar imediatamente?(1 - Sim/ Qualquer outro numero - nao)\n");
+    scanf("%d", &j);
+    if (j == 1) {
+        pFile = fopen("Regras.txt", "r");
+        if (!pFile) exit(1);
+        p = fgetc(pFile);
+        while (p != EOF) {
+            if (p == '\n') {
                 h = 0;
             }
+            if (h >= 80) {
+                if (p == ' ') {
+                    printf("\n");
+                    h = 0;
+                }
+            }
+
+            printf("%c", p);
+            p = fgetc(pFile);
+            h++;
         }
-        printf("%c", p);
-        p = fgetc(pFile);
-        h++;
+        
+        system("PAUSE");
     }
-    getchar();
+    fclose(pFile);
 
     ordem = (int *)malloc(52 * sizeof(int));
     dealer = (MAO *)malloc(1 * sizeof(MAO));
@@ -48,7 +58,7 @@ int main(void)
 
     criarBaralho(baralho);
     embaralhar(ordem);
-
+    j = 1;
     while (dinheiro >= 50 && j == 1)
     {
         system("CLS");
@@ -70,8 +80,11 @@ int main(void)
         rodada(dealer, jogador1, baralho, ordem, &aposta);
         if (gNumRodadas % 5 == 0)
         {
-            printf("Embaralhando...\nPronto!!!\n");
+            printf("Embaralhando...\n");
             embaralhar(ordem);
+            curiosidade(pFile);
+            printf("Pronto!!!\n");
+            system("PAUSE");
             gNumRodadas = 0;
         }
         if (gVitorioso == 1 && jogador1->pontos == 21 && jogador1->qtdCartas == 2)
@@ -80,8 +93,14 @@ int main(void)
             dinheiro += aposta;
         if (gVitorioso == -1)
             dinheiro -= aposta;
+
         printf("Dinheiro: %d\nDeseja jogar outra rodada(1 - sim/ 2 - nao)?\n", dinheiro);
         scanf("%d", &j);
+        while (j != 1 && j != 2) {
+            printf("Digite um valor valido!!!!\n\n");
+            printf("Dinheiro: %d\nDeseja jogar outra rodada(1 - sim/ 2 - nao)?\n", dinheiro);
+            scanf("%d", &j);
+        }
     }
 
     if (dinheiro < 50)

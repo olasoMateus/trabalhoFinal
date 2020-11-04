@@ -13,5 +13,6 @@ void mostrarCartas(MAO *mao, int u);
 void vencedor(MAO *jogador1, MAO *dealer);
 void criarBaralho(CARTA baralho[]);
 void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem, int* aposta);
+void curiosidade(FILE* pFile);
 
 #endif

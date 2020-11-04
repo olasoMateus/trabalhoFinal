@@ -5,5 +5,6 @@ int gNumCArta;
 int gNumRodadas;
 int gVitorioso;
 int rodada_vencida;
+int gCuriosidade;
 
 #endif

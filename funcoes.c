@@ -347,6 +347,10 @@ void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem, int* aposta
     {
         printf("Hit - 1/Double - 2/Passar - 3\n");
         scanf("%d", &j);
+        while (j != 1 && j != 2 && j != 3) {
+            printf("Hit - 1/Double - 2/Passar - 3\n");
+            scanf("%d", &j);
+        }
         if (j == 1)
         {
             if (hit(jogador1, baralho, ordem, jogador1, dealer) == 1){
@@ -404,4 +408,39 @@ void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem, int* aposta
     vencedor(jogador1, dealer);
 
     return;
+}
+
+void curiosidade(FILE* pFile) {
+    int h = 0;
+    char p;
+    if (gCuriosidade == 0) {
+        pFile = fopen("Curiosidade1.txt", "r");
+        if (!pFile) exit(1);
+    }
+    else if (gCuriosidade == 1) {
+        pFile = fopen("Curiosidade2.txt", "r");
+        if (!pFile) exit(1);
+    }
+    else {
+        pFile = fopen("Curiosidade3.txt", "r");
+        if (!pFile) exit(1);
+    }
+    p = fgetc(pFile);
+    while (p != EOF) {
+        if (p == '\n') {
+            h = 0;
+        }
+        if (h >= 80) {
+            if (p == ' ') {
+                printf("\n");
+                h = 0;
+            }
+        }
+        printf("%c", p);
+        p = fgetc(pFile);
+        h++;
+    }
+    fclose(pFile);
+    gCuriosidade++;
+    if (gCuriosidade > 2) gCuriosidade = 0;
 }

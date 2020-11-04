@@ -1,0 +1,7 @@
+Uma das formas mais fáceis de ser banido de Las Vegas é contando cartas. Essa técnica, apesar de não quebrar nenhuma regra, garante grande vantagem ao jogador com as cartas que ainda restam do baralho.
+Uma forma simplificada de contagem de cartas é:
+Cada carta às, 10, valete, dama ou rei vale -1.
+Cada carta de 2 a 5 vale +1.
+A pontuação vale para a mesa, ou seja, se em sua mão há +2 pontos e na mão do Dealer há +2 pontos, a mesa fez +4 pontos nessa rodada, e eles são somados com os pontos das rodadas anteriores.
+Quanto mais pontos a mesa tiver e menos rodadas estiver faltando para embaralhar, mais vale a pena apostar alto. Quanto menos pontos tiver a mesa e mais rodadas tiver passado, mais vale ficar na aposta mínima esperando a mesa melhorar.
+A contagem de cartas é tema de muitos filmes, como o Quebrando a Banca, que também explica mais aprofundadamente a contagem.
