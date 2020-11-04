@@ -2,28 +2,47 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
+#include <locale.h>
 #include "funcoes.h"
 #include "Defs.h"
 #include "Globais.h"
 
 int main(void)
 {
-    int j = 1;
+    int j = 1, h = 0;
     int dinheiro = 1500;
     int aposta = 0;
     const int apostaMinima = 50, apostaMaxima = 500;
     int *ordem;
-    CARTA baralho[104] = {0}; /* Melhor label para esse objeto � baralho. */
+    char p;
+    CARTA baralho[104] = {0}; 
+    FILE* pFile;
 
-    MAO *dealer;
-    MAO *jogador1;
+    MAO* dealer;
+    MAO* jogador1;
+    
+    setlocale(LC_ALL, "Portuguese");
+
+    pFile = fopen("Regras.txt", "r");
+    if (!pFile) exit(1);
+    p = fgetc(pFile);
+    while (p != EOF) {
+        if (h >= 80) {
+            if (p == ' ') {
+                printf("\n");
+                h = 0;
+            }
+        }
+        printf("%c", p);
+        p = fgetc(pFile);
+        h++;
+    }
+    getchar();
 
     ordem = (int *)malloc(52 * sizeof(int));
     dealer = (MAO *)malloc(1 * sizeof(MAO));
     jogador1 = (MAO *)malloc(1 * sizeof(MAO));
 
-    system("CLS");
     srand(time(NULL));
     /*==============================================================================*/
 

@@ -1,0 +1,15 @@
+O jogo 21 ou Blackjack, como é conhecido mundialmente, é um jogo de cartas cujo objetivo é conquistar a maior pontuação sem passar do limite, que é 21 pontos. Nele, 1 ou mais jogadores enfrentam o dealer, que distribuí as cartas e controla as apostas. O jogo pode ser jogado com 1 a 8 baralhos, sendo um dos jogos mais lucrativos do mundo, tanto para a mesa quanto para os jogadores.
+Na nossa versão do jogo, utilizamos dois baralhos. O jogo começa com o jogador decidindo o quanto quer apostar, sendo a aposta mínima 50 e a aposta máxima 500. Após receber suas duas primeiras cartas e visualizar uma das cartas do dealer, o jogador tem três opções:
+1 – Hit: Pedir uma carta a mais para o dealer, sem alterar o valor da aposta;
+2 – Double: Dobrar o valor de sua aposta e pedir apenas uma carta a mais. Não é possível pedir mais cartas após essa ação;
+3 – Passar: Ficar com suas cartas de momento;
+Caso o jogador ultrapasse 21 pontos com suas ações, ele perde automaticamente.
+Caso o dealer ou o jogador faça um Blackjack, o adversário perde automaticamente.
+Em um jogo com mais baralhos, também é possível utilizar o Split, na ocasião de ter duas cartas de pontuação igual. Com o Split, o jogador divide as cartas em duas mãos, e cada mão recebe mais uma carta, totalizando duas em ambas. A nova mão também deve receber a mesma aposta que a primeira. Porém, como no Brasil é mais comum jogar com dois baralhos, normalmente essa ação é abandonada.
+Após o jogador escolher suas ações, a outra carta do dealer é revelada. Então, ele procede puxando cartas do baralho até ter 17 pontos ou mais, ou até ter 5 cartas. Após isso, caso o dealer tenha mais pontos que o jogador, a mesa vence e recolhe a aposta. Caso o jogador tenha mais pontos, ele vence e deve ser pago em 1:1, com exceção de um Blackjack, que paga 2:1. Caso ocorra um empate, a aposta volta para o jogador e 
+==============================Pontuação das cartas=============================
+O naipe das cartas não afeta na pontuação delas.
+Ás: O ás pode valer 1 ou 11, tudo depende da pontuação das outras cartas. Caso as outras cartas somadas tenham pontuação maior que 10, o ás vale 1. Caso tenham pontuação menor ou igual a 10, a pontuação do ás é 11;
+2 a 10: As pontuações dessas cartas valem seu próprio número;
+J, Q e K: Essas cartas tem pontuação 10;
+Blackjack: Obtido quando, nas primeiras duas cartas, há um ás e uma carta de pontuação 10, atingindo 21 pontos. Nesse caso, a vitória é automática, e para o jogador, os ganhos da aposta são dobrados. Valido citar que é possível atingir 21 pontos com três ou mais cartas, mas isso não é considerado um blackjack.
