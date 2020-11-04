@@ -65,9 +65,12 @@ void vencedor(MAO* jogador1, MAO* dealer)
 {
 
     printf("\n");
+
+    printf("Cartas do jogador: \n\n");
     mostrarCartas(jogador1, 0);
     printf("pontuacao do jogador: %d\n\n", jogador1->pontos);
 
+    printf("Cartas do dealer:  \n\n");
     mostrarCartas(dealer, 0);
     printf("pontuacao do dealer: %d\n\n", dealer->pontos);
 
