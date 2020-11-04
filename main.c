@@ -83,7 +83,7 @@ int main(void)
             printf("Embaralhando...\n");
             embaralhar(ordem);
             curiosidade(pFile);
-            printf("Pronto!!!\n");
+            printf("\n\nPronto!!!\n");
             system("PAUSE");
             gNumRodadas = 0;
         }

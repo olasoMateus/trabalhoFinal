@@ -396,12 +396,20 @@ void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem, int* aposta
     while (dealer->pontos < 17 && dealer->qtdCartas < 5 && rodada_vencida == 0 && jogador1->pontos < 21)
     {
         system("PAUSE");
-        if (hit(dealer, baralho, ordem, jogador1, dealer) == 1)
+        if (hit(dealer, baralho, ordem, jogador1, dealer) == 1) {
+            vencedor(jogador1, dealer);
+            rodada_vencida = 1;
             return;
+        }
+
         printf("Cartas do dealer: \n");
         mostrarCartas(dealer, 0);
-        if (pontos(dealer, jogador1, dealer) == 1)
+        if (pontos(dealer, jogador1, dealer) == 1) {
+            vencedor(jogador1, dealer);
+            rodada_vencida = 1;
             return;
+        }
+
         printf("Pontos do dealer: %d\n\n", dealer->pontos);
     }
 
