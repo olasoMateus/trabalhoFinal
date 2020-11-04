@@ -31,33 +31,6 @@ void embaralhar(int *ordem)
     return;
 }
 
-void vencedor(MAO *jogador1, MAO *dealer)
-{
-
-    printf("\n");
-    printf("pontuacao do jogador: %d\n", jogador1->pontos);
-    printf("pontuacao do dealer: %d\n", dealer->pontos);
-
-    printf("\n");
-    if ((jogador1->pontos > dealer->pontos && jogador1->pontos <= 21) || (dealer->pontos > 21 && jogador1->pontos <= 21)){
-        gVitorioso = 1;
-        rodada_vencida = 1;
-        printf("Jogador venceu!!!\n");
-    }
-    else if ((dealer->pontos > jogador1->pontos && dealer->pontos <= 21) || (jogador1->pontos > 21 && dealer->pontos <= 21)){
-        gVitorioso = -1;
-        rodada_vencida = 1;
-        printf("Dealer venceu!!!!\n");
-    }
-    else{
-        gVitorioso = 0;
-        printf("Push!!!(empate)\n");
-    }
-    printf("\n");
-
-    return;
-}
-
 void mostrarCartas(MAO *mao, int u)
 {
     int j = 0;
@@ -66,26 +39,56 @@ void mostrarCartas(MAO *mao, int u)
     {
         if (mao->cartas[j].valor == 1)
         {
-            printf("As de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+            printf("As de %s. Pontos: 1 ou 11\n", mao->cartas[j].naipe);
         }
         else if (mao->cartas[j].valor == 11)
         {
-            printf("Valete (J) de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+            printf("Valete (J) de %s. Pontos: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
         }
         else if (mao->cartas[j].valor == 12)
         {
-            printf("Dama (Q) de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+            printf("Dama (Q) de %s. Pontos: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
         }
         else if (mao->cartas[j].valor == 13)
         {
-            printf("Rei (K) de %s. Valor: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
+            printf("Rei (K) de %s. Pontos: %d\n", mao->cartas[j].naipe, mao->cartas[j].pontos);
         }
         else
         {
-            printf("%d de %s. Valor: %d\n", mao->cartas[j].valor, mao->cartas[j].naipe, mao->cartas[j].pontos);
+            printf("%d de %s. Pontos: %d\n", mao->cartas[j].valor, mao->cartas[j].naipe, mao->cartas[j].pontos);
         }
     }
     printf("\n");
+}
+
+void vencedor(MAO* jogador1, MAO* dealer)
+{
+
+    printf("\n");
+    mostrarCartas(jogador1, 0);
+    printf("pontuacao do jogador: %d\n\n", jogador1->pontos);
+
+    mostrarCartas(dealer, 0);
+    printf("pontuacao do dealer: %d\n\n", dealer->pontos);
+
+    printf("\n");
+    if ((jogador1->pontos > dealer->pontos && jogador1->pontos <= 21) || (dealer->pontos > 21 && jogador1->pontos <= 21)) {
+        gVitorioso = 1;
+        rodada_vencida = 1;
+        printf("Jogador venceu!!!\n");
+    }
+    else if ((dealer->pontos > jogador1->pontos && dealer->pontos <= 21) || (jogador1->pontos > 21 && dealer->pontos <= 21)) {
+        gVitorioso = -1;
+        rodada_vencida = 1;
+        printf("Dealer venceu!!!!\n");
+    }
+    else {
+        gVitorioso = 0;
+        printf("Push!!!(empate)\n");
+    }
+    printf("\n");
+
+    return;
 }
 
 void darCartas(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem)
@@ -140,7 +143,6 @@ int pontos(MAO *mao, MAO *jogador1, MAO *dealer)
     {
         printf("Estouro!\n\n");
         mao->pontos = total;
-        mostrarCartas(mao, 0);
         return 1;
     }
 
@@ -148,7 +150,6 @@ int pontos(MAO *mao, MAO *jogador1, MAO *dealer)
     {
         printf("21!!\n\n");
         mao->pontos = 21;
-        mostrarCartas(mao, 0);
         return 1;
     }
     else if (as == 1)
@@ -402,7 +403,7 @@ void rodada(MAO *dealer, MAO *jogador1, CARTA baralho[], int *ordem, int* aposta
             return;
         }
 
-        printf("Cartas do dealer: \n");
+        printf("\nCartas do dealer: \n");
         mostrarCartas(dealer, 0);
         if (pontos(dealer, jogador1, dealer) == 1) {
             vencedor(jogador1, dealer);

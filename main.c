@@ -103,8 +103,9 @@ int main(void)
         }
     }
 
-    if (dinheiro < 50)
-        printf("Que pena, voce faliu.\n");
+    if (dinheiro < 50) printf("Que pena, voce faliu.\n");
+    else if (dinheiro < 1500) printf("Voce teve %d de prejuizo!! Treine mais e melhore seu ganho!!!\n", 1500 - dinheiro);
+    else printf("Voce teve %de de lucro!! Parabens!!!\n", dinheiro - 1500);
 
     puts("\n");
 
